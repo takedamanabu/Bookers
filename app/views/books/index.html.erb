@@ -1,12 +1,4 @@
 <h1>Books</h1>
-<% if @book.errors.any? %>
- <%= @book.errors.count %>件のエラーが発生しました
- <ul>
-  <% @book.errors.full_messages.each do |message| %>
-   <li><%= massage %></li>
-  <% end %>
- </ul>
-<% end %>
 
 <table>
  <thead>
@@ -20,15 +12,24 @@
  <tbody>
  <% @books.each do |book| %>
   <tr>
-    <td>リーダブルコード</td>
-    <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
+    <td><%= book.title %></td>
+    <td><%= book.body %></td>
     <td><%= link_to "Show", book_path(book) %></td>
-    <td><%= link_to "Edit", book_path(book) %></td>
+    <td><%= link_to "Edit", edit_book_path(book) %></td>
     <td><%= link_to "Destroy", book, method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>
  <% end %>
  </tbody>
 </table>
+
+<% if @book.errors.any? %>
+ <%= @book.errors.count %>件のエラーが発生しました
+ <ul>
+  <% @book.errors.full_messages.each do |message| %>
+   <li><%= massage %></li>
+  <% end %>
+ </ul>
+<% end %>
 
 <h2>New book</h2>
 <%= form_with model: @book do |f| %>
