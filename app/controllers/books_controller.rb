@@ -14,7 +14,8 @@ class BooksController < ApplicationController
       flash[:notice] = "successfully"
       redirect_to book_path(@book)
     else
-      flash.now[:error] = "error"
+      @books = Book.all
+      flash.now[:error] = @book.errors.full_messages
       render :index
     end
   end
